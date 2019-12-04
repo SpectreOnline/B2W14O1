@@ -100,3 +100,10 @@ button:hover{
     50% {background-color: white; box-shadow: 0 12px 16px 0 rgba(255, 255, 255, 0.36), 0 17px 50px 0 rgba(255, 255, 255, 0.28);}
     100% {background-color: gray; box-shadow: 0 12px 16px 0 rgba(128, 128, 128, 0.36), 0 17px 50px 0 rgba(128, 128, 128, 0.28);}
 }
+
+#inventoryItem{
+    position: absolute;
+    height: 10%;
+    Width: 10%;
+    display: inline-block;
+}

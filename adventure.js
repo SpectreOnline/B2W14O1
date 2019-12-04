@@ -13,6 +13,7 @@ var ScenesList = [
     'assets/img/scenes/cabin_inside.jpg',
     'assets/img/scenes/mill_outside.jpg',
     'assets/img/scenes/creekscene.jpg',
+    'assets/img/scenes/mill_inside.jpg'
 ]
 
 
@@ -23,8 +24,9 @@ var LookAroundTxt = [
     "You look around",
     "You look around",
     "You look around, the cabin is quite cozy but there is nothing to really look at, the only thing that stands out is a green jerrycan.",
-    "You look around the windmill is silent, you hear the wind rush around your ears as you take deep breaths.",
+    "You look around, the windmill is silent, you hear the wind rush around your ears as you take deep breaths.",
     "You look around, you then catch yourself blankly staring at the rushing waters wondering what events in your life caused you to be in this predicament.",
+    "You look around, You notice a rope dangling in the middle of the main room."
 ]
 
 var body = document.getElementsByTagName('body');
@@ -38,6 +40,7 @@ var button2 = document.getElementById('button2');
 var button3 = document.getElementById('button3');
 var button4 = document.createElement("button")
 var invcontainer = document.getElementById('inventoryItem');
+var invcontainer2 = document.createElement("img");
 var deathnumber = 0;
 var HasShovel = false;
 var HasBucket = false;
@@ -61,9 +64,9 @@ function StartGame() {
     button2.innerHTML = 'Wake up';
     button3.innerHTML = 'Give up'
     description.innerHTML = "You're unconscious and the faint sound burning echoes around you as you try to collect yourself, a burning smell stings your nostrills";
-    invcontainer.style.display = 'none';
     button3.setAttribute('onclick', 'GameOverAnim(0)');
     button2.setAttribute('onclick', 'Scene1()')
+    invcontainer.style.display = 'none';
 }
 
 function UpdateScene(NewSceneSrc) {
@@ -103,6 +106,8 @@ function Scene1noshovel() {
     UpdateScene(ScenesList[SceneIndex]);
     button1.style.display = 'none';
     HasShovel = true;
+    invcontainer.style.display = 'inline-block';
+    invcontainer.src = 'assets/img/objects/shovel.png';
     button3.innerHTML = 'Attempt to extinguish the fire';
     button3.setAttribute('onclick', 'GameOverAnim(1)');
     button2.innerHTML = 'Go into the forest';
@@ -111,6 +116,7 @@ function Scene1noshovel() {
 
 function SceneForest() {
     SceneIndex = 3;
+    button4.style.display = 'none';
     if (HasShovel) {
         description.innerHTML = "You've found yourself in a forest, trees surround you, you could dig a hole whatever good that will do you";
         button3.setAttribute('onclick', 'Scene1noshovel()');
@@ -218,13 +224,15 @@ function GetBucket() {
     button2.style.display = 'none';
     description.innerHTML = 'You grabbed the bucket';
     UpdateScene(ScenesList[SceneIndex]);
+    invcontainer2.src = 'assets/img/objects/bucket.png';
+    invcontainer2.id = 'inventoryItem';
+    gamecontainer.appendChild(invcontainer2);
+    invcontainer2.style.marginLeft = '8%';
+    return invcontainer2;
 }
 
 function MillSceneInside() {
-    if (HasShovel = false) {
-        description.innerHTML = 'you tried to open de door, it seems to be stuck perhaps it could be forced open'
-        UpdateScene(ScenesList[SceneIndex]);
-    } else {
+    if (HasShovel) {
         SceneIndex = 8;
         description.innerHTML = 'you tried to open the door but the door seems to be stuck, you grab the shovel and then proceed to force the door open';
         UpdateScene(ScenesList[SceneIndex]);
@@ -239,6 +247,25 @@ function MillSceneInside() {
         }
         button4.style.display = 'none';
         button3.setAttribute('onclick', 'MillSceneOutside()');
+    } else {
+        description.innerHTML = 'you tried to open de door, it seems to be stuck perhaps it could be forced open'
+        UpdateScene(ScenesList[SceneIndex]);
 
     }
+}
+
+function PullRope() {
+    description.innerHTML = 'you pull the rope and a hatch  with a set of stairs opens, as soon as you let go the hatch closes';
+    UpdateScene(ScenesList[SceneIndex]);
+}
+
+function AttachBucket() {
+    description.innerHTML = 'You attach the bucket to the rope and a hatch with a set of stairs open, you proceed up the stairs, there you find an odd room with multiple corkboards as well as a big map with a location circeled marked with the words burn it! You then hear a creaking before you could see what it was, you were knocked unconscious again.';
+    button1.style.display = 'none';
+    button2.style.display = 'none';
+    button3.style.display = 'none';
+    button4.style.display = 'none';
+    invcontainer.style.display = 'none';
+    invcontainer2.style.display = 'none';
+    title.innerHTML = 'The End?';
 }
