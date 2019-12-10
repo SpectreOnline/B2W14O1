@@ -1,0 +1,20 @@
+    {
+        indexnum: ,
+        scenename: "",
+        sceneimg: "",
+        scenedesc: "",
+        txtbutton1: '',
+        txtbutton2: '',
+        txtbutton3: '',
+        txtbutton4: '',
+
+        stylebutton1: 'none',
+        stylebutton2: 'none',
+        stylebutton3: 'none',
+        stylebutton4: 'none',
+
+        funcbutton1: "",
+        funcbutton2: "",
+        funcbutton3: "",
+        funcbutton4: "",
+    },

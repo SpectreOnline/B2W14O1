@@ -46,7 +46,7 @@ var HasShovel = false;
 var HasBucket = false;
 var DugHoleForest = false;
 var DugHoleCabin = false;
-var SceneIndex
+var SceneIndex = 0;
 
 
 
@@ -175,6 +175,7 @@ function DigHoleCabin() {
 
 function CabinSceneInside() {
     SceneIndex = 5;
+    button4.style.display = 'none';
     description.innerHTML = 'You go towards the cabin, to your surprise the door was unlocked and you head inside'
     UpdateScene(ScenesList[SceneIndex]);
     button1.style.display = 'inline-block';
